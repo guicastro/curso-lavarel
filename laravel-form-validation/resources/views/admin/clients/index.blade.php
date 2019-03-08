@@ -4,7 +4,7 @@
     <br />
     <h3>Listagem de clientes</h3>
     <br/><br/>
-    <a class="btn btn-default" href="{{ route('clientes.create')}}">Criar novo</a>
+    <a class="btn btn-secondary" href="{{ route('clientes.create')}}">Criar novo</a>
     <table class="table table-striped table-hover">
         <thead>
         <tr>
@@ -29,8 +29,8 @@
                 <td>{{ $client->celular }}</td>
                 <td>{{ $client->sexo }}</td>
                 <td>
-                    <a href="">Editar</a> |
-                    <a href="">Ver</a>
+                    <a href="{{route('clientes.edit', ['client' => $client->id]) }}">Editar</a> |
+                    <a href="{{route('clientes.show', ['client' => $client->id]) }}">Ver</a>
                 </td>
             </tr>
         @endforeach
