@@ -12,6 +12,11 @@ class ClientsTableSeeder extends Seeder
     public function run()
     {
         //Indica o que fazer quando roda a Seeder, por exemplo preencher a tabela com dados de exemplo da Factory
-        factory(\App\Client::class, 5)->create();
+        
+        //Seeder do TIpo de Cliente PF
+        factory(\App\Client::class, 5)->states(array_keys(\App\Client::TIPO_CLIENTE)[0])->create();
+        
+        //Seeder do TIpo de Cliente PJ
+        factory(\App\Client::class, 5)->states(array_keys(\App\Client::TIPO_CLIENTE)[1])->create();
     }
 }

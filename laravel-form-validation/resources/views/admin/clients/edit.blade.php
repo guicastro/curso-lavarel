@@ -4,6 +4,7 @@
 
     <br />
     <h3>Editar Cliente</h3>
+    <h5>{{ \App\Client::TIPO_CLIENTE[$tipoCliente] }}</h5>
     <br/>
     <a class="btn btn-secondary" href="{{ route('clientes.index')}}">Listar clientes</a>
     @include('admin.form.errors')

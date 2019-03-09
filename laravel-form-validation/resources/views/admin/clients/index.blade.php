@@ -22,12 +22,12 @@
         @foreach($clients as $client)
             <tr>
                 <td>{{ $client->id }}</td>
-                <td>{{ $client->nome }}</td>
+                <td>{{ ($client->tipo_cliente == array_keys(\App\Client::TIPO_CLIENTE)[0]) ? $client->nome : $client->nome_fantasia }}</td>
                 <td>{{ $client->documento }}</td>
                 <td>{{ $client->dt_nascimento }}</td>
                 <td>{{ $client->email }}</td>
                 <td>{{ $client->celular }}</td>
-                <td>{{ $client->sexo }}</td>
+                <td>{{ ($client->sexo) ? \App\Client::SEXO[$client->sexo] : '' }}</td>
                 <td>
                     <a href="{{route('clientes.edit', ['client' => $client->id]) }}">Editar</a> |
                     <a href="{{route('clientes.show', ['client' => $client->id]) }}">Ver</a>

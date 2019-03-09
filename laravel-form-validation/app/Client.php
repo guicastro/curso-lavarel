@@ -14,6 +14,16 @@ class Client extends Model
         4 => 'Viúvo(a)'
     ];
 
+    const TIPO_CLIENTE = [
+        'PF' => 'Pessoa Física',
+        'PJ' => 'Pessoa Jurídica'
+    ];
+
+    const SEXO = [
+        'm' => 'Masculino',
+        'f' => 'Feminino'
+    ];
+    
     //recurso para indicar quais são os campos que serão enviados como mass assignment que permite enviar um create sem precisar especificar cada campo no Request
     protected $fillable = ['nome',
                             'documento',
@@ -23,5 +33,12 @@ class Client extends Model
                             'dt_nascimento',
                             'sexo',
                             'estado_civil',
-                            'deficiencia'];
+                            'deficiencia',
+                            'tipo_cliente',
+                            'nome_fantasia'];
+    
+    public static function getClientType($type) {
+
+        return in_array($type, array_keys(Client::TIPO_CLIENTE)) ? $type : array_keys(Client::TIPO_CLIENTE)[0];
+    }
 }

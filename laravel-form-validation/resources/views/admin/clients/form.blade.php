@@ -1,22 +1,15 @@
     {{csrf_field()}}
-    <div class="form-group">
-        <label for="nome">Nome</label>
-        <input class="form-control" id="nome" name="nome" value="{{$client->nome}}">
-    </div>
 
+    <input type="hidden" name="tipo_cliente" id="tipo_cliente" value="{{ $tipoCliente }}" />
     <div class="form-group">
         <label for="documento">Documento</label>
         <input class="form-control" id="documento" name="documento" value="{{$client->documento}}">
     </div>
 
+    @if($tipoCliente == array_keys(\App\Client::TIPO_CLIENTE)[0])
     <div class="form-group">
-        <label for="email">E-mail</label>
-        <input class="form-control" id="email" name="email" type="email" value="{{$client->email}}">
-    </div>
-
-    <div class="form-group">
-        <label for="celular">Telefone</label>
-        <input class="form-control" id="celular" name="celular" value="{{$client->celular}}">
+        <label for="nome">Nome</label>
+        <input class="form-control" id="nome" name="nome" value="{{$client->nome}}">
     </div>
 
     <div class="form-group">
@@ -48,6 +41,26 @@
         <label for="deficiencia">Deficiência Física</label>
         <input class="form-control" id="deficiencia" name="deficiencia" value="{{$client->deficiencia}}">
     </div>
+    @endif
+
+
+    @if($tipoCliente == array_keys(\App\Client::TIPO_CLIENTE)[1])
+    <div class="form-group">
+        <label for="nome_fantasia">Nome Fantasia</label>
+        <input class="form-control" id="nome_fantasia" name="nome_fantasia" value="{{$client->nome_fantasia}}">
+    </div>
+    @endif
+
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input class="form-control" id="email" name="email" type="email" value="{{$client->email}}">
+    </div>
+
+    <div class="form-group">
+        <label for="celular">Telefone</label>
+        <input class="form-control" id="celular" name="celular" value="{{$client->celular}}">
+    </div>
+
     <div class="checkbox">
         <label><input id="status" name="status" type="checkbox" value="1" {{$client->status == true ? 'checked="checked"' : ''}}> Ativo</label>
     </div>

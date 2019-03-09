@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+        /*#### Cria um Validador Personalizado ####*/
+        \Validator::extend('valida_cpf_cnpj', function($attribute, $value, $parameters, $validator) {
+
+            //o nome valida_cpf_cnpj é o nome da regra para validar
+            //realizar as validações
+            //returna TRUE ou FALSE
+
+            return true;
+        });
+        /*#### Cria um Validador Personalizado ####*/
     }
 }

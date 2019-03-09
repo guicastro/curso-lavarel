@@ -9,7 +9,6 @@
 - Para trabalhar com alterações em Migration é necessário antes instalar a biblioteca Doctrine Dbal (composer require doctrine/dbal)
 
 
-
 ## Model Factory e Seeder
 - Server para realizar testes junto ao Model para facilitar o teste
 - Gerado por php artisan make:factory *NomeDaFactory-ex-ClientFactory* --model=App\*NomedoModelReferencia*
@@ -45,3 +44,6 @@
 - Quando a regra de validação for IN os valores devem ser em string separado por vírgula, por ex: in:0,1,3. Se os valores estiverem em um Array pode-se usar implode(',',array_keys($array)) para retornar as chaves da array em string separado por vírgula
 - Na pasta resources/lang/en no arquivo validation.php é possível visualizar todas as mensagens padrão de validação do Laravel, inclusive é possível criar uma pasta pt-BR e traduzir as mensagens a seu gosto
 - Na VIEW é possível utilizar o método $errors->all() para demonstrar todas as mensagens de erros de validação do envio
+- É possível fazer validação de UNIQUE no Laravel, basta utilizar a propriedade unique:*NomeTabela*,*NomeDoCampoUnique*
+- Ao utilizar este tipo de validação é preciso adicionar o ID do registro atual (quando em Edição) para ignorar os dados atuais, uma vez que a edição irá mandar um dado que já existe. Neste caso o correto é obter o ID do registro dentro do método de validação (pode ser o parâmetro da rota) e adicionar depois do campo, ficando unique:*NomeDaTabela*,*NomeDoCampo*,*IdRegAtual*
+- É possível criar validadores personalizados, basta adicionar uma Extend da classe Validator dentro do boot do AppServiceProvider

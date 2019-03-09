@@ -20,8 +20,12 @@
             <td>{{$client->id}}</td>
         </tr>
         <tr>
-            <th scope="row">Nome</th>
-            <td>{{$client->nome}}</td>
+            <th scope="row">Tipo de Cliente</th>
+            <td>{{ \App\Client::TIPO_CLIENTE[$client->tipo_cliente] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">{{ $client->tipo_cliente == array_keys(\App\Client::TIPO_CLIENTE)[0] ? 'Nome' : 'Nome Fantasia'}}</th>
+            <td>{{ $client->tipo_cliente == array_keys(\App\Client::TIPO_CLIENTE)[0] ? $client->nome : $client->nome_fantasia}}</td>
         </tr>
         <tr>
             <th scope="row">Documento</th>
@@ -35,23 +39,11 @@
             <th scope="row">Telefone</th>
             <td>{{$client->celular}}</td>
         </tr>
+
+        @if($client->tipo_cliente == array_keys(\App\Client::TIPO_CLIENTE)[0])
         <tr>
             <th scope="row">Estado Civil</th>
-            <td>
-                @switch($client->estado_civil)
-                    @case(1)
-                        Solteiro
-                        @break
-
-                    @case(2)
-                        Casado
-                        @break
-
-                    @case(3)
-                        Divorciado
-                        @break
-                @endswitch
-            </td>
+            <td>{{ \App\Client::ESTADO_CIVIL[$client->estado_civil]}}</td>
         </tr>
         <tr>
             <th scope="row">Data Nasc.</th>
@@ -59,12 +51,14 @@
         </tr>
         <tr>
             <th scope="row">Sexo</th>
-            <td>{{$client->sexo == 'm' ? 'Masculino': 'Feminino'}}</td>
+            <td>{{ \App\Client::SEXO[$client->sexo]}}</td>
         </tr>
         <tr>
             <th scope="row">Deficiência Física</th>
             <td>{{$client->deficiencia}}</td>
         </tr>
+        @endif
+
         <tr>
             <th scope="row">Status</th>
             <td>{{$client->status?'Ativo': 'Suspenso'}}</td>
